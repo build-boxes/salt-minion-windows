@@ -12,19 +12,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 1. Force the Docker daemon on the runner to switch to Windows Container mode
-      - name: Switch to Windows Containers
+      # 1. Ensure the Windows Docker engine service is actually running
+      - name: Verify and Start Docker Service
         run: |
-          & "C:\Program Files\Docker\Docker\DockerCli.exe" -SwitchDaemon
+          Get-Service docker | Start-Service -ErrorAction SilentlyContinue
+          docker version
         shell: powershell
 
-      # 2. Log in directly using standard PowerShell / Docker CLI to avoid action mismatches
+      # 2. Log in directly using standard PowerShell
       - name: Login to Docker Hub
         run: |
           echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login --username "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
         shell: powershell
 
-      # 3. Natively compile and push the Windows image
+      # 3. Natively compile and push using the default Windows engine
       - name: Build and push Windows container
         run: |
           docker build --no-cache -t hammadrauf/saltmw:latest .
