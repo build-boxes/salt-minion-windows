@@ -22,8 +22,9 @@ jobs:
       # 2. Log in directly using standard PowerShell
       - name: Login to Docker Hub
         run: |
-          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login --username "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+          [System.Console]::Write("${{ secrets.DOCKERHUB_TOKEN }}") | docker login --username "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
         shell: powershell
+
 
       # 3. Natively compile and push using the default Windows engine
       - name: Build and push Windows container
