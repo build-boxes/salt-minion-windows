@@ -72,3 +72,7 @@ docker push ....
 ## Pairing the independent Container based Salt Master
 
 The Salt Master always runs in a Linux Host or Container. 
+
+1. On a Windows Host computer first launch the hammadrauf/saltx Salt-Master container as a Linux container in Docker Desktop.
+2. Then right-click the Docker icon in System-tray and “switch to Windows container engine”. The linux salt-master hammadrauf/saltx will keep running in the background.
+3. Then launch this Windows Engine Salt-Windows-Minion hammadrauf/saltmw.
