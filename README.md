@@ -15,11 +15,11 @@ docker build . -t hammadrauf/saltmw
 
 ## Launching the Container (Locally)
 ```
-docker run --name saltmw01 -d minwin
+docker run --name saltmw01 -d saltmw
 
 OR launch as a Daemon:
 
-docker run --name saltmw01 -d -it minwin
+docker run --name saltmw01 -d -it saltmw
 
 ```
 
