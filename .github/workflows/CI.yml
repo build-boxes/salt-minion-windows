@@ -11,9 +11,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -21,9 +18,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push Windows container
-        uses: docker/build-push-action@v6
-        with:
-          push: true
-          tags: hammadrauf/saltmw:latest
-          file: ./Dockerfile
-          no-cache: true
+        run: |
+          docker build --no-cache -t hammadrauf/saltmw:latest .
+          docker push hammadrauf/saltmw:latest
+
