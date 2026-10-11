@@ -8,6 +8,12 @@ By default the  Official Windows-Server Container images do not have a Graphical
 - Windows Host OS
 - Docker Desktop, with Windows Container Engine Running
 
+## Ports Exposed
+Exposes following ports for minion communication with Salt-Master.
+```
+EXPOSE 4505 4506
+```
+
 ## Build Docker Image
 ```
 docker build . -t hammadrauf/saltmw
