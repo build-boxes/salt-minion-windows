@@ -35,10 +35,6 @@ RUN choco install saltminion -y; `
 RUN salt-call --version; `
     salt-minion --version
 
-# Open Windows Firewall Ports for Salt Communication
-RUN New-NetFirewallRule -DisplayName 'Salt Master to Minion 4505' -Direction Inbound -LocalPort 4505 -Protocol TCP -Action Allow; `
-    New-NetFirewallRule -DisplayName 'Salt Master to Minion 4506' -Direction Inbound -LocalPort 4506 -Protocol TCP -Action Allow
-
 # Expose Ports
 EXPOSE 4505 4506
 
